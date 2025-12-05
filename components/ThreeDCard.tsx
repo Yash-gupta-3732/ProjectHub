@@ -4,10 +4,12 @@ import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { ProjectTypeCard } from "./ProjectCard";
 import Image from "next/image";
+import Link from "next/link";
 
 export function ThreeDCard({ post }: { post: ProjectTypeCard }) {
   console.log("Post in ThreeDCard:", post);
-  const { _id, title, description, image, author } = post;
+  const { title, description, image, author, _id } = post;
+
   return (
     <CardContainer className="inter-var h-[22rem]">
       <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[24rem] h-auto rounded-xl p-6 border  ">
@@ -41,16 +43,18 @@ export function ThreeDCard({ post }: { post: ProjectTypeCard }) {
             target="__blank"
             className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
           >
-            {author?.name || "Unknown Author"}@
-            {author?.username || "Unknown Username"}
+            {author?.name || "Unknown Author"}
+            <br />@{author?.username || "Unknown Username"}
           </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Details
-          </CardItem>
+          <Link href={`/project/${_id}`}>
+            <CardItem
+              translateZ={20}
+              as="button"
+              className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold cursor-pointer"
+            >
+              Details
+            </CardItem>
+          </Link>
         </div>
       </CardBody>
     </CardContainer>
