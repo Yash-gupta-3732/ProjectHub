@@ -15,3 +15,7 @@ const daTe = new Date(date);
   return formatted;
 
 }
+
+export function parseServerActionResponse<T>(response:T){
+return JSON.parse(JSON.stringify(response))
+}
