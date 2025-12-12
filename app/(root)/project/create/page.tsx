@@ -1,7 +1,13 @@
-import ProjectForm from '@/components/ProjectForm'
 import React from 'react'
+import ProjectForm from '@/components/ProjectForm'
+import {auth} from '../../../auth';
+import { redirect } from 'next/navigation';
 
-const page = () => {
+const page = async () => {
+  const session = await auth();
+  if(!session){
+    redirect('/');
+  }
   return (
     <>
     <section className='pattern form_container min-h-[230px]'>
