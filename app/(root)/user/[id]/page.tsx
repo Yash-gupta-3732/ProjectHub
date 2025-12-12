@@ -26,7 +26,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           />
           <div className="flex-1 flex flex-col lg:mt-5">
             <h1 className="text-3xl font-bold">
-              {session?.id == id ? "Your" : "All"} Projects
+              {session?.user?.id == id ? "Your" : "All"} Projects
             </h1>
 
             <ul className="grid grid-cols-1 md:grid-cols-2 mt-6 justify-center gap-1">
