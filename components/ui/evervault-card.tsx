@@ -52,11 +52,12 @@ export const EvervaultCard = ({
         <div className="relative z-10 flex items-center justify-center">
           <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
             <div className="absolute w-full h-full dark:bg-black/[0.8] blur-sm rounded-full" />
-            <span className="dark:text-white text-black z-20 justify-center items-center flex flex-col">
+            <span className="dark:text-white text-black z-20 justify-center items-center flex flex-col text-2xl flex-1">
               <Image height={220}
               width={220}
               src={imageUrl || 'https://placehold.co/220'}
-              alt={text || 'profileImage'}/>
+              alt={text || 'profileImage'}
+              className="rounded-full"/>
               {text}
             </span>
           </div>
