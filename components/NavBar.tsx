@@ -34,7 +34,7 @@ const NavBar = async () => {
                 Logout
               </button>
             </Form>
-            <Link href={`/user/${session.user.id}`} className="flex items-center gap-2">
+            <Link href={`/user/${session.user?.id}`} className="flex items-center gap-2">
               <span className="max-sm:hidden">{session.user?.name}</span>
             </Link>
           </div>
