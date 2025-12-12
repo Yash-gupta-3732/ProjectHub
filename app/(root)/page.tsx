@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Boxes } from "../../components/ui/background-boxes";
 import { cn } from "@/lib/utils";
 import SearchForm from "@/components/SearchForm";
@@ -7,17 +7,18 @@ import { auth } from "../auth";
 import { sanityFetch } from "@/sanity/lib/live";
 import { PROJECT_QUERY } from "../../sanity/lib/queries";
 import { ProjectTypeCard } from "@/components/ProjectCard";
-
+import { ProjectCardSkeleton } from "@/components/ProjectCardSkeleton";
+import ProjectListSkeleton from "@/components/ProjectListSkeleton";
+import { number } from "zod";
 export default async function Home({
   searchParams,
 }: {
   searchParams: Promise<{ query?: string }>;
 }) {
-  const query = (await searchParams);
-  const params = { search: query || null };
+  const query = await searchParams;
+  const params = { search: query?.query || null };
   const session = await auth();
   const { data: posts } = await sanityFetch({ query: PROJECT_QUERY, params });
-  console.log('post',posts); 
   return (
     <>
       <div className="h-[530px] relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
@@ -33,20 +34,27 @@ export default async function Home({
         <p className="text-center mt-2 text-neutral-300 relative z-20 mb-4 sub-heading">
           Framer motion is the best animation library ngl
         </p>
-       
-        <SearchForm query={query.query}/>
+
+        <SearchForm query={query.query} />
       </div>
       <section className="section_container">
-        <p className="text-30-semibold">{query.query ? `Search Result for "${query.query}"`:`Trendy Project`}</p>
-
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 justify-center gap-1">
-          {posts?.length > 0  ?(posts.map((project:ProjectTypeCard, index:number) => (
-            <li key={project._id}>
-              <ThreeDCard post={posts} />
-            </li>
-          ))):(<p className="no-result">No projects found.</p>
-          )}
-          
+        <p className="text-30-semibold">
+          {query.query
+            ? `Search Result for "${query.query}"`
+            : `Trendy Project`}
+        </p>
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 justify-center gap-1 ">
+          <Suspense fallback={<ProjectListSkeleton length = {posts.length} />}>
+            {posts?.length > 0 ? (
+              posts.map((project: ProjectTypeCard, index: number) => (
+                <li key={project._id}>
+                  <ThreeDCard post={project} />
+                </li>
+              ))
+            ) : (
+              <p className="no-result">No projects found.</p>
+            )}
+          </Suspense>
         </ul>
       </section>
     </>
