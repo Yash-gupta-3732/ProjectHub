@@ -37,7 +37,7 @@ const ProjectForm = () => {
 
       // Submit to server action
       const result = await createProject(prevState, formData, details);
-      
+
       if (result.status === "success") {
         toast.success("Project submitted successfully!");
         router.push(`/project/${result._id}`);
@@ -46,13 +46,10 @@ const ProjectForm = () => {
       return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const flat = Object.fromEntries(
-          Object.entries(error.flatten().fieldErrors).map(([key, val]) => [
-            key,
-            val?.[0] || "",
-          ])
-        );
-
+        const flat: Record<string, string> = {};
+        Object.entries(error.flatten().fieldErrors).forEach(([key, val]) => {
+          flat[key] = Array.isArray(val) ? val[0] : "";
+        });
         setErrors(flat);
         toast.error("Please fix the highlighted errors.");
         return { ...prevState, status: "Error" };
@@ -69,24 +66,20 @@ const ProjectForm = () => {
 
   return (
     <form action={formAction} className="project_form space-y-6">
-
       {/* TITLE */}
       <div>
-        <label htmlFor="title" className="project-form_label">Title</label>
-        <Input
-          id="title"
-          name="title"
-          placeholder="Project Title"
-          required
-        />
-        {errors.title && (
-          <p className="project-form_error">{errors.title}</p>
-        )}
+        <label htmlFor="title" className="project-form_label">
+          Title
+        </label>
+        <Input id="title" name="title" placeholder="Project Title" required />
+        {errors.title && <p className="project-form_error">{errors.title}</p>}
       </div>
 
       {/* DESCRIPTION */}
       <div>
-        <label htmlFor="description" className="project-form_label">Description</label>
+        <label htmlFor="description" className="project-form_label">
+          Description
+        </label>
         <Textarea
           id="description"
           name="description"
@@ -100,7 +93,9 @@ const ProjectForm = () => {
 
       {/* CATEGORY */}
       <div>
-        <label htmlFor="category" className="project-form_label">Category</label>
+        <label htmlFor="category" className="project-form_label">
+          Category
+        </label>
         <Input
           id="category"
           name="category"
@@ -114,7 +109,9 @@ const ProjectForm = () => {
 
       {/* IMAGE URL */}
       <div>
-        <label htmlFor="imageurl" className="project-form_label">Project Image URL</label>
+        <label htmlFor="imageurl" className="project-form_label">
+          Project Image URL
+        </label>
         <Input
           id="imageurl"
           name="imageurl"
@@ -128,7 +125,9 @@ const ProjectForm = () => {
 
       {/* DETAILS */}
       <div data-color-mode="light">
-        <label htmlFor="details" className="project-form_label">Detailed Description</label>
+        <label htmlFor="details" className="project-form_label">
+          Detailed Description
+        </label>
 
         <MDEditor
           value={details}
