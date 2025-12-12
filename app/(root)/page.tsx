@@ -7,9 +7,8 @@ import { auth } from "../auth";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { PROJECT_QUERY } from "../../sanity/lib/queries";
 import { ProjectTypeCard } from "@/components/ProjectCard";
-import { ProjectCardSkeleton } from "@/components/ProjectCardSkeleton";
 import ProjectListSkeleton from "@/components/ProjectListSkeleton";
-import { number } from "zod";
+
 export default async function Home({
   searchParams,
 }: {
