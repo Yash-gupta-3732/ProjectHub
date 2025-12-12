@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import SearchForm from "@/components/SearchForm";
 import { ThreeDCard } from "@/components/ThreeDCard";
 import { auth } from "../auth";
-import { sanityFetch } from "@/sanity/lib/live";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { PROJECT_QUERY } from "../../sanity/lib/queries";
 import { ProjectTypeCard } from "@/components/ProjectCard";
 import { ProjectCardSkeleton } from "@/components/ProjectCardSkeleton";
@@ -57,6 +57,7 @@ export default async function Home({
           </Suspense>
         </ul>
       </section>
+      <SanityLive/>
     </>
   );
 }
