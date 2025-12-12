@@ -1,0 +1,24 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: @sanity/preview-url-secret@3.0.0
+npm warn Found: @sanity/client@6.29.1
+npm warn node_modules/@sanity/visual-editing/node_modules/@sanity/client
+npm warn   @sanity/client@"^6.22.4" from @sanity/mutate@0.11.0-canary.4
+npm warn   node_modules/@sanity/visual-editing/node_modules/@sanity/mutate
+npm warn     @sanity/mutate@"0.11.0-canary.4" from @sanity/visual-editing@4.0.2
+npm warn     node_modules/@sanity/visual-editing
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer @sanity/client@"^7.12.0" from @sanity/preview-url-secret@3.0.0
+npm warn node_modules/@sanity/visual-editing/node_modules/@sanity/preview-url-secret
+npm warn   @sanity/preview-url-secret@"^3.0.0" from @sanity/visual-editing@4.0.2
+npm warn   node_modules/@sanity/visual-editing
+npm error code ECONNRESET
+npm error syscall read
+npm error errno -4077
+npm error network read ECONNRESET
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the
+npm error network 'proxy' config is set properly.  See: 'npm help config'
+npm error A complete log of this run can be found in: C:\Users\gupta\AppData\Local\npm-cache\_logs\2025-12-11T13_13_19_457Z-debug-0.log
