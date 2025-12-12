@@ -8,6 +8,7 @@ import Form from "next/form";
 
 const NavBar = async () => {
   const session = await auth();
+ 
   return (
     <header className="bg-white px-5 py-3 shadow-md">
       <nav className="flex justify-between items-center">
@@ -17,7 +18,7 @@ const NavBar = async () => {
 
         {session && session?.user ? (
           <div className="flex justify-between gap-5">
-            <Link href={"/"}>
+            <Link href={"/project/create"}>
               <span className="max-sm:hidden">Create</span>
             </Link>
            <Form
@@ -33,7 +34,7 @@ const NavBar = async () => {
                 Logout
               </button>
             </Form>
-            <Link href={`/user/${session.user.id}`}>
+            <Link href={`/user/${session?.id}`} className="flex items-center gap-2">
               <span className="max-sm:hidden">{session.user?.name}</span>
             </Link>
           </div>
