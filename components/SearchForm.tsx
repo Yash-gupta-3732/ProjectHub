@@ -4,7 +4,7 @@ import { Search } from 'lucide-react'
 import SearchFormReset from './SearchFormReset'
 
 const SearchForm = ({ query }: { query?: string }) => {
-  console.log("SearchForm query:", query);
+ 
   return (
     <form
       action="/"

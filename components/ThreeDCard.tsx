@@ -6,8 +6,8 @@ import { ProjectTypeCard } from "./ProjectCard";
 import Image from "next/image";
 import Link from "next/link";
 
-export function ThreeDCard({ post }: { post: ProjectTypeCard }) {
-  console.log("Post in ThreeDCard:", post);
+export function  ThreeDCard({ post }: { post: ProjectTypeCard }) {
+ 
   const { title, description, image, author, _id } = post;
 
   return (
