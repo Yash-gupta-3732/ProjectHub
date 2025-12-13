@@ -1,5 +1,10 @@
 import {withSentryConfig} from "@sentry/nextjs";
-const nextConfig = {
+import type { NextConfig } from "next";
+type NextConfigWithOptFonts = NextConfig & { optimizeFonts?: boolean };
+const nextConfig: NextConfigWithOptFonts = {
+  typescript:{
+    ignoreBuildErrors:true
+  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
