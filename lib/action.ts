@@ -37,7 +37,7 @@ export const createProject = async <T>(
       },
       author: {
         _type: "reference",
-        _ref: session.user?.id,
+        _ref: session.id,
       },
     };
 
